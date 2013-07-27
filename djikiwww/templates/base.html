@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}Djiki{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/djiki.css" />
+</head>
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<a class="navbar-brand" href="/">Djiki</a></h1>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="nav-collapse collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="{% if page.title == 'Getting started' %}active{% endif %}">
+						<a href="{% url 'djiki-page-view' 'Getting started' %}">Getting started</a>
+					</li>
+					<li class="{% if page.title == 'Markup' %}active{% endif %}">
+						<a href="{% url 'djiki-page-view' 'Markup' %}">Markup</a>
+					</li>
+					<li class="{% if page.title == 'Customize' %}active{% endif %}">
+						<a href="{% url 'djiki-page-view' 'Customize' %}">Customize</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		{% block messages %}
+		{% if messages %}
+		<div id="messages" class="row">
+			<div class="col-lg-6 col-offset-3">
+				{% for msg in messages %}
+				<div class="alert {{ msg.tags }}">{{ msg }}</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+		{% endblock %}
+	{% block page %}{% endblock %}
+{% block google-analytics %}
+{% if GOOGLE_ANALYTICS_ID %}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ GOOGLE_ANALYTICS_ID }}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{% endif %}
+{% endblock %}
+</body>
+</html>
+

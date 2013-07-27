@@ -1,0 +1,6 @@
+{% extends 'djiki/base_page.html' %}
+{% load i18n djiki_tags %}
+{% block djiki_main %}
+	{{ revision.content|djiki_markup }}
+	<div class="clear"></div>
+{% endblock %}

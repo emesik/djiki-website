@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block page %}
+<div id="djiki-head" class="row">
+	<div id="djiki-title" class="col-lg-6">
+		<div class="wrapper">
+		<h2>{% block internal-title %}{% endblock %}</h2>
+		</div>
+	</div>
+	<div id="djiki-actions" class="col-lg-6">
+	{% block djiki_actions %}{% endblock %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		{% block djiki_main %}{% endblock %}
+	</div>
+</div>
+{% endblock %}

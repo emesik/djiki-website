@@ -1,0 +1,31 @@
+{% extends 'djiki/base_page.html' %}
+{% load i18n djiki_tags widget_tweaks %}
+{% block title %}{% trans "Edit page" %}: {{ block.super }}{% endblock %}
+{% block djiki_main %}
+<div class="content">
+	{% if preview_content %}
+	{{ preview_content|djiki_markup }}
+	<div class="clear"></div>
+	{% endif %}
+</div>
+<div class="editForm">
+	<form action="" method="post">
+		{% csrf_token %}
+		<fieldset>
+		{% for field in form %}
+			{% if not field.is_hidden %}
+				<div class="form-group">
+				{% if field.errors %}<div class="alert alert-danger">{{ field.errors }}</div>{% endif %}
+				{{ field.label_tag }}:
+				{{ field|attr:"class:form-control" }}
+				</div>
+			{% else %}
+				{{ field }}
+			{% endif %}
+		{% endfor %}
+		</fieldset>
+		<button class="btn" type="submit" name="action" value="preview">{% trans "Preview" %}</button>
+		<button class="btn btn-default" type="submit" name="action" value="save">{% trans "Save" %}</button>
+	</form>
+</div>
+{% endblock %}
