@@ -4,12 +4,17 @@
 {% block title %}{{ page.title }} | {{ block.super }}{% endblock %}
 {% block internal-title %}{{ page.title }}{% endblock %}
 {% block djiki_actions %}
-<ul class="nav nav-tabs">
-	<li><a href="{% url 'djiki-page-view' page.title|urlize_title %}">{% trans "Page" %}</a></li>
-	<li><a href="{% url 'djiki-page-edit' page.title|urlize_title %}" rel="nofollow">{% trans "Edit page" %}</a></li>
-	<li><a href="{% url 'djiki-page-history' page.title|urlize_title %}" rel="nofollow">{% trans "History" %}</a></li>
-	<li><a href="{% url 'djiki-page-view' page.title|urlize_title %}?raw=1" rel="nofollow">{% trans "Get source" %}</a></li>
-	<li><a href="{% url 'djiki-image-new' %}" rel="nofollow">{% trans "Upload" %}</a></li>
+<div class="btn-group pull-right">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		Actions <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		<li><a tabindex="-1" href="{% url 'djiki-page-view' page.title|urlize_title %}">{% trans "View page" %}</a></li>
+		<li><a tabindex="-1" href="{% url 'djiki-page-edit' page.title|urlize_title %}" rel="nofollow">{% trans "Edit" %}</a></li>
+		<li><a tabindex="-1" href="{% url 'djiki-page-history' page.title|urlize_title %}" rel="nofollow">{% trans "History" %}</a></li>
+		<li><a tabindex="-1" href="{% url 'djiki-page-view' page.title|urlize_title %}?raw=1" rel="nofollow">{% trans "Get source" %}</a></li>
+		<li class="divider"></li>
+		<li><a tabindex="-1" href="{% url 'djiki-image-new' %}" rel="nofollow">{% trans "Upload" %}</a></li>
 </ul>
-<div class="clear"></div>
+</div>
 {% endblock %}

@@ -1,11 +1,3 @@
-#djiki-title, #djiki-actions {
-	height: 65px;
-}
-#djiki-actions ul {
-	margin-top: 23px;
-	border-bottom: none;
-}
-#djiki-head {
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 20px;
+#djiki-actions .btn-group {
+	margin-top: 20px;
 }
