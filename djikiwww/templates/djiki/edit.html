@@ -11,6 +11,12 @@
 <div class="editForm">
 	<form action="" method="post">
 		{% csrf_token %}
+		{% if form.non_field_errors %}
+		<div class="alert alert-error alert-block">
+			<h4>{% trans "The page cannot be saved" %}</h4>
+			{{ form.non_field_errors }}
+		</div>
+		{% endif %}
 		<fieldset>
 		{% for field in form %}
 			{% if not field.is_hidden %}
